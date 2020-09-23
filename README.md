@@ -1,3 +1,5 @@
+이 프로젝트는 https://nomadcoders.co/nwitter 강의를 따라 하고 있습니다.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
