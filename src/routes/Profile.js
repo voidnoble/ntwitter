@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { authService, dbService } from 'fbase';
 import { useHistory } from 'react-router-dom';
 
-const Profile = ({ userObj }) => {
+const Profile = ({ userObj, refreshUser }) => {
   const history = useHistory();
   const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
 
@@ -22,11 +22,12 @@ const Profile = ({ userObj }) => {
 
   const onSubmit = async (evt) => {
     evt.preventDefault();
-    
+
     if (userObj.displayName !== newDisplayName) {
       await userObj.updateProfile({
-        displayName: newDisplayName
+        displayName: newDisplayName,
       });
+      refreshUser();
     }
   };
 
@@ -39,6 +40,7 @@ const Profile = ({ userObj }) => {
     <>
       <form onSubmit={onSubmit}>
         <input type="text" name="displayName" id="displayName" placeholder="Display name" onChange={onChangeDisplayName} value={newDisplayName} />
+        <button type="submit">Change</button>
       </form>
       <button onClick={onLogoutClick}>Logout</button>
     </>
