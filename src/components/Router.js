@@ -8,7 +8,7 @@ import Profile from 'routes/Profile';
 const AppRouter = ({ isLoaggedIn, userObj }) => {
   return (
     <Router>
-      {isLoaggedIn && <Navigation />}
+      {isLoaggedIn && <Navigation userObj={userObj} />}
       <Switch>
         {isLoaggedIn ? (
           <>
