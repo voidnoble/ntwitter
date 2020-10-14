@@ -1,3 +1,5 @@
+import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { dbService, storageService } from 'fbase';
 import React, { useState } from 'react';
 
@@ -30,26 +32,30 @@ const Ntweet = ({ item, isOwner }) => {
   };
 
   return (
-    <div>
+    <div className="nweet">
       {editing ? (
         isOwner && (
           <>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmit} className="container nweetEdit">
               <input type="text" name="text" value={newNtweet} onChange={onEditChange} placeholder="Edit your text" required />
-              <input type="submit" value="Update" />
+              <input type="submit" value="Update" className="formBtn" />
             </form>
-            <button onClick={toggleEditing}>Cancel Edit</button>
+            <button onClick={toggleEditing} className="formBtn cancelBtn">Cancel Edit</button>
           </>
         )
       ) : (
         <>
           <h4>{item.text}</h4>
-          {item.attachementUrl && <img src={item.attachementUrl} width="50" height="50" />}
+          {item.attachementUrl && <img src={item.attachementUrl} />}
           {isOwner && (
-            <>
-              <button onClick={onDeleteClick}>Delete</button>
-              <button onClick={toggleEditing}>Edit</button>
-            </>
+            <div className="nweet__actions">
+              <span onClick={onDeleteClick}>
+                <FontAwesomeIcon icon={faTrash} />
+              </span>
+              <span onClick={toggleEditing}>
+                <FontAwesomeIcon icon={faPencilAlt} />
+              </span>
+            </div>
           )}
         </>
       )}
